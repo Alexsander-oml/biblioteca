@@ -1,5 +1,6 @@
 CREATE TABLE `usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(50) NOT NULL UNIQUE,
   `nome_de_usuario` VARCHAR(50) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`)
@@ -9,7 +10,9 @@ CREATE TABLE `livros` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(255) NOT NULL,
   `autor` VARCHAR(255) NOT NULL,
-  `disponivel` BOOLEAN NOT NULL DEFAULT 1,
+  `disponivel` INT NOT NULL,
+  `ano` INT NOT NULL,
+  `editora` VARCHAR(255) NOT NULL, 
   PRIMARY KEY (`id`)
 );
 
