@@ -15,6 +15,7 @@
     <div><?= session()->getFlashdata('error') ?></div>
   <?php endif; ?>
   <form action="/user/registrar" method="post">
+    <input type="text" name="email" placeholder="Email" required>
     <input type="text" name="username" placeholder="Usuário" required>
     <input type="password" name="password" placeholder="Senha" required>
     <button type="submit">Registrar</button>
