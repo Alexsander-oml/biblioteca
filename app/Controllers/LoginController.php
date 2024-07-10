@@ -17,18 +17,17 @@ class LoginController extends Controller
   {
     $session = session();
     $model = new UserModel();
-    $username = $this->request->getVar('username');
+    $email = $this->request->getVar('email');
     $password = $this->request->getVar('password');
 
-    $data = $model->getUserByUsername($username);
-
+    $data = $model->getUserByEmail($email);
     if ($data) {
       $pass = $data['senha'];
       $verify_pass = password_verify($password, $pass);
       if ($verify_pass) {
         $ses_data = [
           'id'       => $data['id'],
-          'usuario' => $data['nome_de_usuario'],
+          'email' => $data['email'],
           'logged_in'     => TRUE
         ];
         $session->set($ses_data);
@@ -38,7 +37,7 @@ class LoginController extends Controller
         return redirect()->to('/login');
       }
     } else {
-      $session->setFlashdata('msg', 'Usuário não encontrado.');
+      $session->setFlashdata('msg', 'Email não encontrado.');
       return redirect()->to('/login');
     }
   }
@@ -55,7 +54,7 @@ class LoginController extends Controller
     $model = new UserModel();
 
     $data = [
-      'nome_de_usuario' => $this->request->getVar('username'),
+      'email' => $this->request->getVar('email'),
       'senha' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
     ];
 
