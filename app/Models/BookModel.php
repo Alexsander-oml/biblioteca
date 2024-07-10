@@ -8,10 +8,11 @@ class BookModel extends Model
 {
   protected $table = 'livros';
   protected $primaryKey = 'id';
-  protected $allowedFields = ['titulo', 'autor', 'disponivel'];
+  protected $allowedFields = ['titulo', 'autor', 'disponivel', 'ano', 'editora'];
 
   public function getAvailableBooks()
   {
-    return $this->where(['disponivel' => 1])->findAll();
+    return $this->where('disponivel !=', 0)->findAll();
+
   }
 }
