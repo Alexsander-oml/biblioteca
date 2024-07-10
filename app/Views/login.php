@@ -12,7 +12,7 @@
     <div><?= session()->getFlashdata('msg') ?></div>
   <?php endif; ?>
   <form action="/login/auth" method="post">
-    <input type="text" name="username" placeholder="Usuário" required>
+    <input type="email" name="email" placeholder="Email" required>
     <input type="password" name="password" placeholder="Senha" required>
     <button type="submit">Login</button>
   </form>
