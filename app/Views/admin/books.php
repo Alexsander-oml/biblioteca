@@ -35,6 +35,9 @@
       background-color: #fff;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     a {
@@ -55,6 +58,41 @@
       text-align: center;
       margin-top: 20px;
     }
+
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    .btn-success {
+      background-color: #28a745;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .btn-row a {
+      flex-basis: calc(33.33% - 10px);
+      margin-bottom: 10px;
+    }
+
+    .borrow-button {
+      margin-left: 10px;
+    }
   </style>
 </head>
 
@@ -66,21 +104,25 @@
     <ul>
       <?php foreach ($books as $book) : ?>
         <li>
-          <?= $book['titulo'] ?> by <?= $book['autor'] ?>
-          <a href="/emp/<?= $book['id'] ?>">Pegar emprestado</a>
-          <?php if (session()->get('email') === 'admin') : ?>
-            <div class="admin-links">
-              <a href="/admin/books/edit/<?= $book['id'] ?>">Editar</a>
-              <a href="/admin/books/delete/<?= $book['id'] ?>">Deletar</a>
-            </div>
-          <?php endif; ?>
+          <div>
+            <?= $book['titulo'] ?> by <?= $book['autor'] ?>
+          </div>
+          <div class="admin-links">
+            <?php if (session()->get('email') === 'admin') : ?>
+              <a href="/admin/books/edit/<?= $book['id'] ?>" class="btn-success">Editar</a>
+              <a href="/admin/books/delete/<?= $book['id'] ?>" class="btn-danger">Deletar</a>
+            <?php endif; ?>
+            <a href="/emp/<?= $book['id'] ?>" class="btn-primary borrow-button">Pegar emprestado</a>
+          </div>
         </li>
       <?php endforeach; ?>
     </ul>
     <?php if (session()->get('email') === 'admin') : ?>
       <div class="admin-links">
-        <a href="/admin/books/create">Criar novo livro</a>
-        <a href="/admin/books">Gerenciar livros</a>
+        <div class="btn-row">
+          <a href="/admin/books/create" class="btn-success">Criar novo livro</a>
+          <a href="/admin/books" class="btn-primary">Gerenciar livros</a>
+        </div>
       </div>
     <?php endif; ?>
     <div class="logout-link">
