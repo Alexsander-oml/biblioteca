@@ -8,20 +8,16 @@
 </head>
 
 <body>
-  <a>Olá, <?= session()->get('nome') ?></a>
-  <h1>Available Books</h1>
-  <a href="/mybooks">My Books</a>
+  <h1>Meus livros</h1>
+  <a href="/books">Ver livros</a>
   <ul>
-    <?php foreach ($books as $book) : ?>
+    <?php foreach ($myBooks as $book) : ?>
       <li>
         <?= $book['titulo'] ?> by <?= $book['autor'] ?>
-        <a href="/emp/<?= $book['id'] ?>">Pegar emprestado</a>
+        <a href="/devolver/<?= $book['emp_id'] ?>">Devolver</a>
       </li>
     <?php endforeach; ?>
   </ul>
-  <?php if (session()->get('email') === 'admin') : ?>
-    <a href="/admin/books">Gerenciar livros</a>
-  <?php endif; ?>
   <a href="/logout">Logout</a>
 </body>
 

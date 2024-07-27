@@ -21,7 +21,7 @@ class EmpController extends Controller
     $loanData = [
       'id_usuario' => $session->get('id'),
       'id_livro' => $bookId,
-      'emp_data' => date('Y-m-d H:i:s')
+      'data_emprestimo' => date('Y-m-d H:i:s')
     ];
 
     $bookModel->update($bookId, ['disponivel' => 0]);

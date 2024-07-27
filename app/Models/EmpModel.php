@@ -6,9 +6,9 @@ use CodeIgniter\Model;
 
 class EmpModel extends Model
 {
-  protected $table = 'emp';
+  protected $table = 'emprestimos';
   protected $primaryKey = 'id';
-  protected $allowedFields = ['id_usuario', 'id_livro', 'emp_data', 'data_devolucao'];
+  protected $allowedFields = ['id_usuario', 'id_livro', 'data_emprestimo', 'data_devolucao'];
 
   public function getEmpByUserId($userId)
   {

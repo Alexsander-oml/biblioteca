@@ -26,11 +26,15 @@ class LoginController extends Controller
       $verify_pass = password_verify($password, $pass);
       if ($verify_pass) {
         $ses_data = [
+          'nome' => $data['nome_de_usuario'],
           'id'       => $data['id'],
           'email' => $data['email'],
           'logged_in'     => TRUE
         ];
         $session->set($ses_data);
+        if ($data['email'] === 'admin') {
+          return redirect()->to('/admin/books');
+        }
         return redirect()->to('/books');
       } else {
         $session->setFlashdata('msg', 'Senha incorreta.');
@@ -54,6 +58,7 @@ class LoginController extends Controller
     $model = new UserModel();
 
     $data = [
+      'nome_de_usuario' => $this->request->getVar('username'),
       'email' => $this->request->getVar('email'),
       'senha' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
     ];
